@@ -1,0 +1,36 @@
+RecyclerView Steps:
+1) Add RecyclerView dependency in gradle:
+in build.gradle (Module: app) go to dependencies and add the recycler view dependency (example : implementation 'com.android.support:recyclerview-v7:28.0.0')
+2) Add RecyclerView tag in your XML file:
+<android.support.v7.widget.RecyclerView
+            android:id="@+id/searchResultsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:visibility="gone"/>
+3) Create template_tuple to be used in the recycler view
+4) Prepare RecylcerView in its respective Acitivity :
+private fun prepareRecyclerView()
+    {
+        searchResultsRecyclerView.setHasFixedSize(true)
+        searchResultsRecyclerView.layoutManager = LinearLayoutManager(this)
+        searchResultsRecyclerView.adapter = SearchResultsRecyclerViewAdapter(searchDataController)
+    }
+5) Create the RecylcerViewAdapter:
+a) create a class that implements the recyclerview adapter ->
+class SearchResultsRecyclerViewAdapter(val searchDataController: SearchDataController) : RecyclerView.Adapter<SearchResultsRecyclerViewAdapter.PlaceViewHolder>()
+b) create a class that implements the template_tuple->
+ class ....ViewHolder(val mainView: View) : RecyclerView.ViewHolder(mainView)
+    {
+        val nameTextView: TextView
+        val temperatureTextView: TextView
+        init
+        {
+            nameTextView= mainView.findViewById(R.id.nameTextView)
+            temperatureTextView = mainView.findViewById(R.id.temperatureTextView)
+        }
+    }
+c) Implement it's main three abstract functions -> 
+override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ....ViewHolder
+override fun onBindViewHolder(holder: PlaceViewHolder, position: Int)
+override fun getItemCount(): Int
+
