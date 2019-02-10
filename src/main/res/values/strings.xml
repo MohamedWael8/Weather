@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="search_placeholder">Search...</string>
+    <string name="content_description_save_button">This is a save button with a save logo</string>
+</resources>
